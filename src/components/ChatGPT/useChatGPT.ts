@@ -4,7 +4,7 @@ import ClipboardJS from 'clipboard'
 import { throttle } from 'lodash-es'
 
 import { ChatGPTProps, ChatMessage, ChatRole } from './interface'
-import { language } from '../LanguageBar'
+import { getLanguage } from '../LanguageBar'
 
 const scrollDown = throttle(
   () => {
@@ -78,7 +78,7 @@ export const useChatGPT = (props: ChatGPTProps) => {
       controller.current = new AbortController()
       setLoading(true)
 
-      const reader = await requestMessage(fetchPath, messages, language, controller.current)
+      const reader = await requestMessage(fetchPath, messages, getLanguage(), controller.current)
       const decoder = new TextDecoder('utf-8')
       let done = false
 

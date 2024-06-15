@@ -9,7 +9,6 @@ const { Option } = Select;
 
 const LanguageBar = () => {
     function handleChange(value: string) {
-        console.log(`selected ${value}`);
         language = value;
     }
 
@@ -29,5 +28,10 @@ const LanguageBar = () => {
       );
 }
 
-export let language = "英文";
+let language = "英文";
+
+export function getLanguage() {
+    return language;
+}
+
 export default LanguageBar
