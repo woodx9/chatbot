@@ -5,12 +5,18 @@ import { Layout, Space, Typography } from 'antd'
 
 import styles from './index.module.less'
 import LanguageBar from '../LanguageBar'
+import LocaleSettingBar from '../LocaleSettingBar'
 
 const { Link } = Typography
 
 const { Header } = Layout
 
-const HeaderBar = () => {
+interface HeaderBar {
+  setLocaleLanguage: (state: string) => void; // 明确指定函数类型
+}
+
+
+const HeaderBar: React.FC<HeaderBar> = ({setLocaleLanguage}) => {
   return (
     <>
       <Header className={styles.header}>
@@ -22,15 +28,7 @@ const HeaderBar = () => {
           <LanguageBar />
         </div>
         <Space className={styles.right} size={0}>
-          <span className={styles.right}>
-            <Link
-              className={styles.action}
-              href="https://github.com/blrchen/chatgpt-minimal"
-              target="_blank"
-            >
-              <GithubOutlined />
-            </Link>
-          </span>
+          <LocaleSettingBar setLocaleLanguage={setLocaleLanguage} />
         </Space>
       </Header>
       <div className={styles.vacancy} />

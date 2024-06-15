@@ -6,12 +6,15 @@ import FooterBar from '@/components/FooterBar'
 import HeaderBar from '@/components/HeaderBar'
 
 import styles from './index.module.less'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+  const [localeLanguage, setLocaleLanguage]= useState('cn')
+
   return (
     <Layout hasSider className={styles.layout}>
       <Layout>
-        <HeaderBar />
+        <HeaderBar setLocaleLanguage={setLocaleLanguage} />
         <Content className={styles.main}>
           <ChatGPT fetchPath="/api/chat-completion" />
         </Content>

@@ -47,7 +47,10 @@ const requestMessage = async (
 export const useChatGPT = (props: ChatGPTProps) => {
   const { fetchPath } = props
   const [, forceUpdate] = useReducer((x) => !x, false)
-  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [messages, setMessages] = useState<ChatMessage[]>([{
+    content: 'Hi, 豆包MarsCode, I\'m your AI translator, I can help you with translation task.',
+    role: ChatRole.Assistant
+  }])
   const [disabled] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 

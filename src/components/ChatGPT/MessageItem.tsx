@@ -5,6 +5,8 @@ import mdHighlight from 'markdown-it-highlightjs'
 import mdKatex from 'markdown-it-katex'
 
 import { ChatMessageItemProps } from './interface'
+import locale from 'antd/lib/date-picker/locale/en_US'
+import { localize } from '../LocaleSettingBar/getDescription'
 
 const md = MarkdownIt({ html: true }).use(mdKatex).use(mdHighlight)
 const fence = md.renderer.rules.fence!
@@ -30,7 +32,10 @@ const MessageItem = (props: ChatMessageItemProps) => {
       <div className="meta">
         <div className="avatar">
           <span className={message.role}></span>
+          <span className="name">{localize(message.role)}</span>
         </div>
+       
+        <br/>
         <div className="message" dangerouslySetInnerHTML={{ __html: md.render(message.content) }} />
       </div>
     </div>
