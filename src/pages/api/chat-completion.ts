@@ -83,6 +83,7 @@ const OpenAIStream = async (apiUrl: string, apiKey: string, model: string, messa
     ## 约束
     在回答用户问题时，你只需要进行语言翻译，不进行任何其他类型的解答和反馈。
     你的翻译必须完全基于用户提供的原始表述，不能添加、省略或更改任何信息。
+    如果用户输入的语言和目标语言相通，直接返回用户输入即可，不要输出其他信息
     `
   };
   console.log('system prompt: \n' + JSON.stringify(systemPrompt));
