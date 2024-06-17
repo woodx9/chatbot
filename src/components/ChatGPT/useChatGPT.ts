@@ -5,6 +5,7 @@ import { throttle } from 'lodash-es'
 
 import { ChatGPTProps, ChatMessage, ChatRole } from './interface'
 import { getLanguage } from '../LanguageBar'
+import { localize } from '../LocaleSettingBar/getDescription'
 
 const scrollDown = throttle(
   () => {
@@ -45,12 +46,21 @@ const requestMessage = async (
 }
 
 export const useChatGPT = (props: ChatGPTProps) => {
-  const { fetchPath } = props
+  const { fetchPath, localeLanguage } = props
   const [, forceUpdate] = useReducer((x) => !x, false)
+  console.log('useChatGPT refresh:');
   const [messages, setMessages] = useState<ChatMessage[]>([{
-    content: 'Hi, 豆包MarsCode, I\'m your AI translator, I can help you with translation task.',
+    content: localize('Hi, I\'m your AI translator, I can help you with translation tasks.'),
     role: ChatRole.Assistant
   }])
+
+  useEffect(() => {
+    messages[0].content = localize('Hi, I\'m your AI translator, I can help you with translation tasks.');
+    setMessages([...messages])
+  }, [localeLanguage])
+
+  
+
   const [disabled] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 

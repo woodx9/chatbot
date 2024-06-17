@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <Layout hasSider className={styles.layout}>
       <Layout>
-        <HeaderBar setLocaleLanguage={setLocaleLanguage} />
+        <HeaderBar setLocaleLanguage={setLocaleLanguage} localeLanguage={localeLanguage}/>
         <Content className={styles.main}>
-          <ChatGPT fetchPath="/api/chat-completion" />
+          <ChatGPT fetchPath="/api/chat-completion" localeLanguage={localeLanguage} />
         </Content>
         <FooterBar />
       </Layout>

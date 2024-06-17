@@ -13,19 +13,20 @@ const { Header } = Layout
 
 interface HeaderBar {
   setLocaleLanguage: (state: string) => void; // 明确指定函数类型
+  localeLanguage: string;
 }
 
 
-const HeaderBar: React.FC<HeaderBar> = ({setLocaleLanguage}) => {
+const HeaderBar: React.FC<HeaderBar> = ({localeLanguage, setLocaleLanguage}) => {
   return (
     <>
       <Header className={styles.header}>
         <div className={styles.logoBar}>
           <Link href="/">
             <img alt="logo" src="/logo192.png" />
-            <h1>ChatGPT Minimal</h1>
+            <h1>ChatBot</h1>
           </Link>
-          <LanguageBar />
+          <LanguageBar localeLanguage={localeLanguage} />
         </div>
         <Space className={styles.right} size={0}>
           <LocaleSettingBar setLocaleLanguage={setLocaleLanguage} />
