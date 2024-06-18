@@ -6,14 +6,6 @@ export const config = {
 }
 
 
-// const response = await fetch(url, {
-//   method: 'POST',
-//   body: JSON.stringify({
-//     messages
-//   }),
-//   signal: controller?.signal
-// })
-
 const handler = async (req: Request): Promise<Response> => {
   try {
     const { messages, language } = (await req.json()) as {
@@ -25,15 +17,6 @@ const handler = async (req: Request): Promise<Response> => {
     let charCount = 0
     let messagesToSend = []
     messagesToSend.push(messages[messages.length - 1])
-
-    // for (let i = 0; i < messages.length; i++) {
-    //   const message = messages[i]
-    //   if (charCount + message.content.length > charLimit) {
-    //     break
-    //   }
-    //   charCount += message.content.length
-    //   messagesToSend.push(message)
-    // }
 
     const useAzureOpenAI =
       process.env.AZURE_OPENAI_API_BASE_URL && process.env.AZURE_OPENAI_API_BASE_URL.length > 0
