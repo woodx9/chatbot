@@ -4,7 +4,6 @@ import { ClearOutlined, SendOutlined } from '@ant-design/icons'
 
 import { ChatRole, SendBarProps } from './interface'
 import Show from './Show'
-import { localize } from '../LocaleSettingBar/getDescription'
 
 const SendBar = (props: SendBarProps) => {
   const { loading, disabled, onSend, onClear, onStop } = props
@@ -52,9 +51,9 @@ const SendBar = (props: SendBarProps) => {
     <Show
       fallback={
         <div className="thinking">
-          <span>{localize('Please wait ...')}</span>
+          <span>{'Please wait ...'}</span>
           <div className="stop" onClick={onStop}>
-            {localize('Stop')}
+            {'Stop'}
           </div>
         </div>
       }
@@ -65,7 +64,7 @@ const SendBar = (props: SendBarProps) => {
           ref={inputRef!}
           className="input"
           disabled={disabled}
-          placeholder={localize('Shift + Enter for new line')}
+          placeholder={'Shift + Enter for new line'}
           autoComplete="off"
           rows={1}
           onKeyDown={onKeydown}
