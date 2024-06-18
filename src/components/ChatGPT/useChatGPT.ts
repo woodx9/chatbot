@@ -47,7 +47,6 @@ const requestMessage = async (
 export const useChatGPT = (props: ChatGPTProps) => {
   const { fetchPath, localeLanguage } = props
   const [, forceUpdate] = useReducer((x) => !x, false)
-  console.log('useChatGPT refresh:');
   const [messages, setMessages] = useState<ChatMessage[]>([{
     content: 'Hi, I\'m your AI translator, I can help you with translation tasks.',
     role: ChatRole.Assistant

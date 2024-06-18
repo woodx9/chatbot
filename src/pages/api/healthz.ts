@@ -3,7 +3,6 @@ export const config = {
 }
 
 const handler = async (req: any): Promise<Response> => {
-  console.log('Handling request:', req.url)
 
   try {
     let azureOpenAIKey = false
