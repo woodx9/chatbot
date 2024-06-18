@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Select, Form} from 'antd'
 
 import styles from './index.module.less'
+import { localize } from '../LocaleSettingBar/getDescription';
 
 const { Option } = Select;
 
@@ -15,13 +16,13 @@ const LanguageBar = ({}) => {
     return (
         <Form>
         <Form.Item
-          label={'Target Language'}
+          label={localize('Target Language')}
           name="select"
         >
           <Select defaultValue={'English'} style={{ width: 120 }} onChange={handleChange}>
-            <Option value='English'>{'English'}</Option>
-            <Option value='Chinese'>{'Chinese'}</Option>
-            <Option value='French'>{'French'}</Option>
+            <Option value='English'>{localize('English')}</Option>
+            <Option value='Chinese'>{localize('Chinese')}</Option>
+            <Option value='French'>{localize('French')}</Option>
           </Select>
         </Form.Item>
         </Form>

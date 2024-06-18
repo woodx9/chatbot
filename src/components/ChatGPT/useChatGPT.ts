@@ -5,6 +5,7 @@ import { throttle } from 'lodash-es'
 
 import { ChatGPTProps, ChatMessage, ChatRole } from './interface'
 import { getLanguage } from '../LanguageBar'
+import { localize } from '../LocaleSettingBar/getDescription'
 
 const scrollDown = throttle(
   () => {
@@ -48,7 +49,7 @@ export const useChatGPT = (props: ChatGPTProps) => {
   const { fetchPath} = props
   const [, forceUpdate] = useReducer((x) => !x, false)
   const [messages, setMessages] = useState<ChatMessage[]>([{
-    content: 'Hi, I\'m your AI translator, I can help you with translation tasks.',
+    content: localize('Hi, I\'m your AI translator, I can help you with translation tasks.'),
     role: ChatRole.Assistant
   }])  
 

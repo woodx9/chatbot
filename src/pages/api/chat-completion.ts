@@ -1,3 +1,4 @@
+import { localize } from '@/components/LocaleSettingBar/getDescription'
 import { Message } from '@/models'
 import { createParser, ParsedEvent, ReconnectInterval } from 'eventsource-parser'
 
@@ -18,7 +19,7 @@ const handler = async (req: Request): Promise<Response> => {
     let messagesToSend = []
     const newMessage = messages[messages.length - 1];
     messagesToSend.push(newMessage)
-    console.log(`New message from user: ${newMessage}`)
+    console.log(localize('New message from user: {0}', newMessage.content))
 
     const useAzureOpenAI =
       process.env.AZURE_OPENAI_API_BASE_URL && process.env.AZURE_OPENAI_API_BASE_URL.length > 0
@@ -71,7 +72,7 @@ const OpenAIStream = async (apiUrl: string, apiKey: string, model: string, messa
     如果用户输入的语言和目标语言相通，直接返回用户输入即可，不要输出其他信息
     `
   };
-  console.log(`Current system prompt: ${systemPrompt}`);
+  console.log(localize('Current system prompt: {0}', systemPrompt.content))
 
   const res = await fetch(apiUrl, {
     headers: {
@@ -130,7 +131,7 @@ const OpenAIStream = async (apiUrl: string, apiKey: string, model: string, messa
 
       for await (const chunk of res.body as any) {
         const str = decoder.decode(chunk).replace('[DONE]\n', '[DONE]\n\n')
-        console.log(`Get streaming response: ${str}`);
+        console.log(localize('Get streaming response: {0}', str))
         parser.feed(str)
       }
     }
