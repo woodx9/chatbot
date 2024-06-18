@@ -16,7 +16,9 @@ const handler = async (req: Request): Promise<Response> => {
     const charLimit = 12000
     let charCount = 0
     let messagesToSend = []
-    messagesToSend.push(messages[messages.length - 1])
+    const newMessage = messages[messages.length - 1];
+    messagesToSend.push(newMessage)
+    console.log(`New message from user: ${newMessage}`)
 
     const useAzureOpenAI =
       process.env.AZURE_OPENAI_API_BASE_URL && process.env.AZURE_OPENAI_API_BASE_URL.length > 0
@@ -69,7 +71,7 @@ const OpenAIStream = async (apiUrl: string, apiKey: string, model: string, messa
     如果用户输入的语言和目标语言相通，直接返回用户输入即可，不要输出其他信息
     `
   };
-  console.log('system prompt: \n' + JSON.stringify(systemPrompt));
+  console.log(`Current system prompt: ${systemPrompt}`);
 
   const res = await fetch(apiUrl, {
     headers: {
@@ -93,13 +95,14 @@ const OpenAIStream = async (apiUrl: string, apiKey: string, model: string, messa
     })
     
   })
-  console.log("messages: " + JSON.stringify(messages))
   if (res.status !== 200) {
     const statusText = res.statusText
     throw new Error(
       `The OpenAI API has encountered an error with a status code of ${res.status} and message ${statusText}`
     )
   }
+
+  
 
   return new ReadableStream({
     async start(controller) {
@@ -127,6 +130,7 @@ const OpenAIStream = async (apiUrl: string, apiKey: string, model: string, messa
 
       for await (const chunk of res.body as any) {
         const str = decoder.decode(chunk).replace('[DONE]\n', '[DONE]\n\n')
+        console.log(`Get streaming response: ${str}`);
         parser.feed(str)
       }
     }
