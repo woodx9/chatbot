@@ -7,8 +7,7 @@ export enum ChatRole {
 }
 
 export interface ChatGPTProps {
-  fetchPath: string,
-  localeLanguage: string
+  fetchPath: string
 }
 
 export interface ChatMessage {

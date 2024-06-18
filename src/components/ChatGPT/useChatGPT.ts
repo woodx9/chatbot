@@ -45,7 +45,7 @@ const requestMessage = async (
 }
 
 export const useChatGPT = (props: ChatGPTProps) => {
-  const { fetchPath, localeLanguage } = props
+  const { fetchPath} = props
   const [, forceUpdate] = useReducer((x) => !x, false)
   const [messages, setMessages] = useState<ChatMessage[]>([{
     content: 'Hi, I\'m your AI translator, I can help you with translation tasks.',
